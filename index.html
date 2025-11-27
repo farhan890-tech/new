@@ -1,787 +1,875 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Callfield Dental Care - Homepage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Care </title>
+    <meta name="description"
+        content="Quality, affordable dental care in Wichita Falls. Dr. Ghia offers general, cosmetic, and implant dentistry in a comfortable setting.">
 
-    <!-- Tailwind & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+                rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Configure Tailwind with custom theme colors -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-blue': '#0066CC', // Your chosen Blue
-                        'primary-green': '#0eb588', // Your chosen Green
-                        'bg-default': '#D5D3D3', // Your chosen Background Gray
-                        'surface-white': '#ffffff',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Custom CSS for Header/Dropdowns/Animation -->
-    <style>
-        /* BASE STYLES */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #D5D3D3;
-            /* bg-default */
-        }
-
-        .container {
-            max-width: 1280px;
-        }
-
-        /* CUSTOM HEADER STYLES (from your original code) */
-
-        /* Header base */
-        .header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 999;
-            background-color: transparent;
-            backdrop-filter: blur(0px);
-            transition: all 0.45s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        /* After scroll */
-        .header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        /* TOP BAR smooth slide up */
-        .top-bar {
-            height: 48px;
-            /* Adjusted height for cleaner transition */
-            overflow: hidden;
-            transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .top-bar.scrolled {
-            height: 0;
-            opacity: 0;
-            padding: 0;
-            transform: translateY(-30px);
-        }
-
-        /* Nav links default (white over hero image) */
-        .nav-links a {
-            color: white;
-            transition: color 0.3s ease;
-        }
-
-        /* Black on scroll */
-        .header.scrolled .nav-links a {
-            color: #1f2937;
-            /* Gray 800 */
-        }
-
-        /* Logo (Text replacement, removed image shrinking) */
-        .logo a {
-            font-size: 1.5rem;
-            /* 24px */
-            font-weight: 800;
-            color: white;
-            transition: color 0.3s ease;
-        }
-
-        .header.scrolled .logo a {
-            color: #0066CC;
-            /* primary-blue */
-        }
-
-        /* CTA Button */
-        .cta .btn {
-            transition: all 0.4s ease;
-            transform: translateY(0);
-        }
-
-        .header.scrolled .cta .btn {
-            background-color: #0066CC;
-            /* primary-blue */
-            color: white;
-            box-shadow: 0 4px 10px rgba(0, 102, 204, 0.3);
-        }
-
-        /* Dropdown container */
-        .dropdown {
-            position: relative;
-        }
-
-        /* Dropdown menu box */
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            width: 280px;
-            background: #ffffff;
-            /* White BG */
-            border-radius: 12px;
-            padding: 10px 0;
-            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.25);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-            z-index: 9999;
-            border: 1px solid #f0f0f0;
-        }
-
-        /* Dropdown links */
-        .dropdown-menu a {
-            display: block;
-            padding: 10px 15px;
-            color: #333;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .dropdown-menu a:hover {
-            background: #e0f2ff;
-            /* Light blue hover */
-            color: #0066CC;
-        }
-
-        /* Hover show */
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* ZOOM OUT ANIMATION */
-        @keyframes zoomOut {
-            0% {
-                transform: scale(1.15);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .animate-zoomOut {
-            animation: zoomOut 6s ease-out forwards;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body class="text-gray-800">
-
-    <!-- HEADER: Fixed & Dynamic -->
-    <header class="header">
-        <!-- TOP BAR -->
-        <div class="top-bar bg-primary-blue/90 w-full backdrop-blur-sm shadow-md transition-all duration-300">
+<body>
+    <header class="w-full">
+        <div class="bg-primary-blue/90 backdrop-blur-sm shadow-md transition-all duration-300">
             <div
-                class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-white text-sm py-3 px-4">
-                <!-- Address -->
+                class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-black text-sm py-1 px-4">
                 <div class="flex items-center gap-2">
-                    <i class="fas fa-map-marker-alt text-white/80"></i>
+                    <i class="fas fa-map-marker-alt text-black"></i>
                     <span>4501 Call Field Road, Wichita Falls, TX 76308</span>
                 </div>
-                <!-- Divider -->
-                <div class="hidden sm:block text-white/50">|</div>
-                <!-- Phone -->
+                <div class="hidden sm:block text-black">|</div>
                 <a href="tel:+19406928411" class="flex items-center gap-2 hover:text-primary-green transition">
-                    <i class="fas fa-phone-alt text-white/80"></i>
+                    <i class="fas fa-phone-alt text-black"></i>
                     <span>(940) 692-8411</span>
                 </a>
             </div>
         </div>
 
-        <!-- NAVBAR -->
-        <nav class="navbar flex justify-between items-center px-4 lg:px-10 py-3 max-w-7xl mx-auto">
+        <div class="container mx-auto flex items-center py-2 border-gray-300 border-dashed px-4 relative">
+            <a href="index.html" class="flex-shrink-0">
+                <img src="/Ghia-website-new/assets/image/logo.png" class="w-36 md:w-40 lg:w-48" alt="Dental Care" />
+            </a>
 
-            <!-- LOGO (Text Replacement) -->
-            <div class="logo">
-                <a href="index.html"
-                    class="flex items-center space-x-2 text-white hover:text-primary-green transition duration-300">
-                    <img src="/Ghia-website-new/assets/image/logo.png" class="w-40 lg:w-48" alt="Dental Care" />
+            <nav class="hidden lg:flex flex-1 justify-center">
+                <ul id="desktop-nav-links" class="flex items-center gap-2 font-medium">
+                    <li><a href="index.html" class="px-3 py-2 hover:text-primary-green transition">Home</a></li>
+
+                    <li class="relative group">
+                        <a href="#" class="px-3 py-2 hover:text-primary-green transition">Patient Information ▾</a>
+                        <div class="absolute left-0 invisible group-hover:visible group-hover:block 
+                            bg-white shadow-xl rounded-md py-2 w-56 z-50
+                            opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 
+                            transition-all duration-200">
+                            <a href="welcome.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Welcome</a>
+                            <a href="whychooseus.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Why
+                                Choose Us</a>
+                            <a href="newpatients.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">New
+                                Patients</a>
+                            <a href="scheduling.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Scheduling</a>
+                            <a href="insuranceinformation.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Insurance Info</a>
+                            <a href="patientregistration.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Patient Registration</a>
+                            <a href="adapatienteducation.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ADA Education</a>
+                            <a href="infectioncontrol.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Infection Control</a>
+                            <a href="advancedtechnology.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Advanced Technology</a>
+                            <a href="nitrousoxide.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Nitrous
+                                Oxide</a>
+                        </div>
+                    </li>
+
+                    <li class="relative group">
+                        <a href="#" class="px-3 py-2 hover:text-primary-green transition">Preventive Care ▾</a>
+                        <div class="absolute left-0 invisible group-hover:visible group-hover:block 
+                            bg-white shadow-xl rounded-md py-2 w-56 z-50
+                            opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 
+                            transition-all duration-200">
+                            <a href="dentalexamsandcheckups.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dental Exams & Check-Ups</a>
+                            <a href="oralhygiene.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Oral
+                                Hygiene</a>
+                            <a href="childdentistry.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Child
+                                Dentistry</a>
+                            <a href="teethcleaning.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Teeth
+                                Cleaning</a>
+                            <a href="dentalsealants.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dental
+                                Sealants</a>
+                            <a href="periodontalmaintenance.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Periodontal Maintenance</a>
+                            <a href="deepteethcleaning.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Deep Teeth Cleaning</a>
+                        </div>
+                    </li>
+
+                    <li class="relative group">
+                        <a href="#" class="px-3 py-2 hover:text-primary-green transition">Restorative Dentistry ▾</a>
+                        <div class="absolute left-0 invisible group-hover:visible group-hover:block 
+                            bg-white shadow-xl rounded-md py-2 w-56 z-50 max-h-80 overflow-y-auto
+                            opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 
+                            transition-all duration-200">
+                            <a href="dentalfillings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dental
+                                Fillings</a>
+                            <a href="dentalimplants.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dental
+                                Implants</a>
+                            <a href="dentalbridges.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dental
+                                Bridges</a>
+                            <a href="dentalcrowns.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dental
+                                Crowns</a>
+                            <a href="nonsurgicalrootcanal.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Non-Surgical Root Canal</a>
+                            <a href="immediatedentures.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Immediate Dentures</a>
+                            <a href="implantretaindentures.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Implant Retained Dentures</a>
+                            <a href="partialdentures.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Partial Dentures</a>
+                            <a href="denturecare.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Denture
+                                Care</a>
+                            <a href="examsandmaintenance.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Exams & Maintenance</a>
+                            <a href="denturereliners.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Denture Reliners</a>
+                            <a href="rebaseandrepairs.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Rebase & Repairs</a>
+                            <a href="softliners.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Soft
+                                Liners</a>
+                        </div>
+                    </li>
+
+                    <li class="relative group">
+                        <a href="#" class="px-3 py-2 hover:text-primary-green transition">Cosmetic Dentistry ▾</a>
+                        <div class="absolute left-0 invisible group-hover:visible group-hover:block 
+                            bg-white shadow-xl rounded-md py-2 w-56 z-50
+                            opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 
+                            transition-all duration-200">
+                            <a href="dentalbonding.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dental
+                                Bonding</a>
+                            <a href="porcelainveneers.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Porcelain Veneers</a>
+                            <a href="teethwhitening.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Teeth
+                                Whitening</a>
+                            <a href="clearbraces.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Clear
+                                Braces</a>
+                        </div>
+                    </li>
+
+                    <li class="relative group">
+                        <a href="#" class="px-3 py-2 hover:text-primary-green transition">About Us ▾</a>
+                        <div class="absolute left-0 invisible group-hover:visible group-hover:block 
+                            bg-white shadow-xl rounded-md py-2 w-56 z-50
+                            opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 
+                            transition-all duration-200">
+                            <a href="drghia.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dr. Ghia</a>
+                            <a href="meetthestaff.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Meet the
+                                Staff</a>
+                        </div>
+                    </li>
+
+                    <li><a href="contactus.html" class="px-3 py-2  hover:text-primary-green transition">Contact Us</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="flex items-center gap-4 md:gap-6 ml-auto">
+
+                <a href="tel:+19406928411" 
+                    class="hidden lg:inline-block 
+                        px-6 py-2 
+                        bg-teal-600 text-white font-bold rounded-full 
+                        shadow-md hover:bg-teal-700 
+                        transition duration-300">
+                    Call (940) 692-8411
                 </a>
+
+                <button id="mobile-menu-btn" 
+                        class="block lg:hidden 
+                            text-2xl text-slate-700 
+                            p-2 rounded-lg hover:bg-gray-100 transition" 
+                        aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
+        </div>
 
-            <!-- DESKTOP NAV -->
-            <ul class="nav-links hidden lg:flex space-x-6 text-[16px] font-medium">
-                <li><a href="index.html" class="hover:text-primary-green transition">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="hover:text-primary-green transition">Patient Information ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="welcome.html">Welcome</a>
-                        <a href="whychooseus.html">Why Choose Us</a>
-                        <a href="newpatients.html">New Patients</a>
-                        <a href="scheduling.html">Scheduling</a>
-                        <a href="insuranceinformation.html">Insurance Information</a>
-                        <a href="patientregistration.html">Patient Registration</a>
-                        <a href="adapatienteducation.html">ADA Patient Education</a>
-                        <a href="infectioncontrol.html">Infection Control</a>
-                        <a href="advancedtechnology.html">Advanced Technology</a>
-                        <a href="nitrousoxide.html">Nitrous Oxide</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="hover:text-primary-green transition">Preventive Care ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="dentalexamsandcheckups.html">Dental Exams & Check-Ups</a>
-                        <a href="oralhygiene.html">Oral Hygiene</a>
-                        <a href="childdentistry.html">Child Dentistry</a>
-                        <a href="teethcleaning.html">Teeth Cleaning</a>
-                        <a href="dentalsealants.html">Dental Sealants</a>
-                        <a href="periodontalmaintenance.html">Periodontal Maintenance</a>
-                        <a href="deepteethcleaning.html">Deep Teeth Cleaning</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="hover:text-primary-green transition">Restorative Dentistry ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="dentalfillings.html">Dental Fillings</a>
-                        <a href="dentalimplants.html">Dental Implants</a>
-                        <a href="dentalbridges.html">Dental Bridges</a>
-                        <a href="dentalcrowns.html">Dental Crowns</a>
-                        <a href="nonsurgicalrootcanal.html">Non-Surgical Root Canal</a>
-                        <a href="immediatedentures.html">Immediate Dentures</a>
-                        <a href="implantretaindentures.html">Implant Retained Dentures</a>
-                        <a href="partialdentures.html">Partial Dentures</a>
-                        <a href="denturecare.html">Denture Care</a>
-                        <a href="examsandmaintenance.html">Exams & Maintenance</a>
-                        <a href="denturereliners.html">Denture Reliners</a>
-                        <a href="rebaseandrepairs.html">Rebase & Repairs</a>
-                        <a href="softliners.html">Soft Liners</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="hover:text-primary-green transition">Cosmetic Dentistry ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="dentalbonding.html">Dental Bonding</a>
-                        <a href="porcelainveneers.html">Porcelain Veneers</a>
-                        <a href="teethwhitening.html">Teeth Whitening</a>
-                        <a href="clearbraces.html">Clear Braces</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="hover:text-primary-green transition">About Us ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="drghia.html">Dr. Ghia</a>
-                        <a href="meetthestaff.html">Meet the Staff</a>
-                    </div>
-                </li>
-                <li><a href="contactus.html" class="hover:text-primary-green transition">Contact Us</a></li>
-            </ul>
+        <ul id="mobile-menu" class="lg:hidden hidden absolute w-full bg-white shadow-xl z-40 py-2">
+            <li><a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a></li>
 
-            <!-- CTA only desktop -->
-            <div class="cta hidden lg:flex items-center">
+            <li class="border-t border-gray-100">
+                <button
+                    class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    data-mobile-dropdown="patient-info">Patient Information <span class="text-xs">▶</span></button>
+                <ul class="ml-4 hidden" id="patient-info-mobile-menu">
+                    <li><a href="welcome.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Welcome</a></li>
+                    <li><a href="whychooseus.html" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Why
+                            Choose Us</a></li>
+                    <li><a href="newpatients.html" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">New
+                            Patients</a></li>
+                    <li><a href="scheduling.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Scheduling</a></li>
+                    <li><a href="insuranceinformation.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Insurance Info</a></li>
+                    <li><a href="patientregistration.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Patient Registration</a></li>
+                    <li><a href="adapatienteducation.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">ADA Education</a></li>
+                    <li><a href="infectioncontrol.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Infection Control</a></li>
+                    <li><a href="advancedtechnology.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Advanced Technology</a></li>
+                    <li><a href="nitrousoxide.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Nitrous Oxide</a></li>
+                </ul>
+            </li>
 
-                <a class="btn bg-primary-green text-white px-6 py-2.5 rounded-full font-semibold 
-                      hover:bg-primary-green/90 transition shadow-lg shadow-primary-green/40 flex items-center"
-                    href="#">
-                    <i class="far fa-calendar-check mr-2"></i> Schedule Online 24/7
-                </a>
+            <li class="border-t border-gray-100">
+                <button
+                    class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    data-mobile-dropdown="preventive-care">Preventive Care <span class="text-xs">▶</span></button>
+                <ul class="ml-4 hidden" id="preventive-care-mobile-menu">
+                    <li><a href="dentalexamsandcheckups.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dental Exams & Check-Ups</a>
+                    </li>
+                    <li><a href="oralhygiene.html" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Oral
+                            Hygiene</a></li>
+                    <li><a href="childdentistry.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Child Dentistry</a></li>
+                    <li><a href="teethcleaning.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Teeth Cleaning</a></li>
+                    <li><a href="dentalsealants.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dental Sealants</a></li>
+                    <li><a href="periodontalmaintenance.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Periodontal Maintenance</a>
+                    </li>
+                    <li><a href="deepteethcleaning.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Deep Teeth Cleaning</a></li>
+                </ul>
+            </li>
 
-            </div>
+            <li class="border-t border-gray-100">
+                <button
+                    class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    data-mobile-dropdown="restorative-dentistry">Restorative Dentistry <span
+                        class="text-xs">▶</span></button>
+                <ul class="ml-4 hidden" id="restorative-dentistry-mobile-menu">
+                    <li><a href="dentalfillings.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dental Fillings</a></li>
+                    <li><a href="dentalimplants.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dental Implants</a></li>
+                    <li><a href="dentalbridges.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dental Bridges</a></li>
+                    <li><a href="dentalcrowns.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dental Crowns</a></li>
+                    <li><a href="nonsurgicalrootcanal.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Non-Surgical Root Canal</a>
+                    </li>
+                    <li><a href="immediatedentures.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Immediate Dentures</a></li>
+                    <li><a href="implantretaindentures.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Implant Retained Dentures</a>
+                    </li>
+                    <li><a href="partialdentures.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Partial Dentures</a></li>
+                    <li><a href="denturecare.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Denture Care</a></li>
+                    <li><a href="examsandmaintenance.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Exams & Maintenance</a></li>
+                    <li><a href="denturereliners.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Denture Reliners</a></li>
+                    <li><a href="rebaseandrepairs.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Rebase & Repairs</a></li>
+                    <li><a href="softliners.html" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Soft
+                            Liners</a></li>
+                </ul>
+            </li>
 
-            <!-- MOBILE MENU BUTTON -->
-            <button class="mobile-menu-btn lg:hidden text-3xl text-white">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
+            <li class="border-t border-gray-100">
+                <button
+                    class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    data-mobile-dropdown="cosmetic-dentistry">Cosmetic Dentistry <span class="text-xs">▶</span></button>
+                <ul class="ml-4 hidden" id="cosmetic-dentistry-mobile-menu">
+                    <li><a href="dentalbonding.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dental Bonding</a></li>
+                    <li><a href="porcelainveneers.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Porcelain Veneers</a></li>
+                    <li><a href="teethwhitening.html"
+                            class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Teeth Whitening</a></li>
+                    <li><a href="clearbraces.html" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Clear
+                            Braces</a></li>
+                </ul>
+            </li>
+
+            <li class="border-t border-gray-100">
+                <button
+                    class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex justify-between items-center"
+                    data-mobile-dropdown="about-us">About Us <span class="text-xs">▶</span></button>
+                <ul class="ml-4 hidden" id="about-us-mobile-menu">
+                    <li><a href="drghia.html" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Dr.
+                            Ghia</a></li>
+                    <li><a href="meetthestaff.html" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">Meet
+                            the Staff</a></li>
+                </ul>
+            </li>
+
+            <li class="border-t border-gray-100"><a href="contactus.html"
+                    class="block px-4 py-2  text-gray-700 hover:bg-gray-100">Contact Us</a></li>
+            <li class="border-t border-gray-100 pt-2 pb-4 px-4">
+                <a href="tel:+19406928411" class="btn btn-primary block text-center">Call (940) 692-8411</a>
+            </li>
+        </ul>
+
     </header>
-
-    <!-- Mobile Menu -->
-    <div id="mobileMenu"
-        class="lg:hidden fixed top-0 left-0 w-full h-full bg-surface-white shadow-xl z-[9999] translate-y-[-100%] transition-transform duration-300 overflow-y-auto">
-
-        <div class="p-4 flex justify-between items-center border-b">
-            <a href="index.html" class="text-2xl font-extrabold font-display text-primary-blue">Callfield Dental</a>
-            <i id="closeMenu"
-                class="fas fa-times text-3xl cursor-pointer text-gray-700 hover:text-primary-blue transition"></i>
-        </div>
-
-        <div class="p-5">
-            <ul class="space-y-5 text-lg font-medium">
-                <li><a href="index.html" class="block text-gray-800 hover:text-primary-blue">Home</a></li>
-
-                <!-- Patient Info -->
-                <li>
-                    <button
-                        class="mobile-dropdown-btn flex justify-between items-center w-full text-gray-800 hover:text-primary-blue">
-                        Patient Information <i class="fas fa-chevron-down text-sm"></i>
-                    </button>
-                    <div class="mobile-dropdown hidden pl-4 space-y-2 mt-2 text-sm text-gray-600">
-                        <a href="welcome.html">Welcome</a>
-                        <a href="whychooseus.html">Why Choose Us</a>
-                        <a href="newpatients.html">New Patients</a>
-                        <a href="scheduling.html">Scheduling</a>
-                        <a href="insuranceinformation.html">Insurance Information</a>
-                    </div>
-                </li>
-
-                <!-- Preventive Care -->
-                <li>
-                    <button
-                        class="mobile-dropdown-btn flex justify-between items-center w-full text-gray-800 hover:text-primary-blue">
-                        Preventive Care <i class="fas fa-chevron-down text-sm"></i>
-                    </button>
-                    <div class="mobile-dropdown hidden pl-4 space-y-2 mt-2 text-sm text-gray-600">
-                        <a href="dentalexamsandcheckups.html">Dental Exams</a>
-                        <a href="oralhygiene.html">Oral Hygiene</a>
-                        <a href="childdentistry.html">Child Dentistry</a>
-                        <a href="teethcleaning.html">Teeth Cleaning</a>
-                    </div>
-                </li>
-
-                <!-- Restorative -->
-                <li>
-                    <button
-                        class="mobile-dropdown-btn flex justify-between items-center w-full text-gray-800 hover:text-primary-blue">
-                        Restorative Dentistry <i class="fas fa-chevron-down text-sm"></i>
-                    </button>
-                    <div class="mobile-dropdown hidden pl-4 space-y-2 mt-2 text-sm text-gray-600">
-                        <a href="dentalfillings.html">Dental Fillings</a>
-                        <a href="dentalimplants.html">Dental Implants</a>
-                        <a href="dentalbridges.html">Dental Bridges</a>
-                        <a href="dentalcrowns.html">Dental Crowns</a>
-                    </div>
-                </li>
-
-                <!-- Cosmetic -->
-                <li>
-                    <button
-                        class="mobile-dropdown-btn flex justify-between items-center w-full text-gray-800 hover:text-primary-blue">
-                        Cosmetic Dentistry <i class="fas fa-chevron-down text-sm"></i>
-                    </button>
-                    <div class="mobile-dropdown hidden pl-4 space-y-2 mt-2 text-sm text-gray-600">
-                        <a href="dentalbonding.html">Dental Bonding</a>
-                        <a href="porcelainveneers.html">Porcelain Veneers</a>
-                    </div>
-                </li>
-
-                <!-- About -->
-                <li>
-                    <button
-                        class="mobile-dropdown-btn flex justify-between items-center w-full text-gray-800 hover:text-primary-blue">
-                        About Us <i class="fas fa-chevron-down text-sm"></i>
-                    </button>
-                    <div class="mobile-dropdown hidden pl-4 space-y-2 mt-2 text-sm text-gray-600">
-                        <a href="drghia.html">Dr. Ghia</a>
-                        <a href="meetthestaff.html">Meet the Staff</a>
-                    </div>
-                </li>
-
-                <li><a href="contactus.html" class="block text-gray-800 hover:text-primary-blue">Contact Us</a></li>
-
-                <li class="pt-4">
-                    <a class="w-full text-center block bg-primary-blue text-white px-5 py-3 rounded-xl font-bold hover:bg-primary-blue/90 transition shadow-xl shadow-primary-blue/30"
-                        href="#">
-                        <i class="far fa-calendar-check mr-2"></i> Schedule Online 24/7
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- PAGE WRAPPER / MAIN CONTENT -->
-
-    <!-- HERO SECTION -->
-    <section class="relative w-full h-screen min-h-[70vh] overflow-hidden">
-        <!-- Placeholder Image (Replaced original external URL) -->
-        <img src="/Ghia-website-new/assets/image/family2.jpg"
-            class="absolute inset-0 w-full h-full object-cover opacity-80 animate-zoomOut"
-            alt="Modern Dental Office Interior">
-
-        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70"></div>
-
-        <!-- TEXT CONTENT -->
-        <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white px-4">
-            <h1 class="text-5xl md:text-6xl font-extrabold font-display mb-4 leading-tight shadow-text">
-                Welcome to Our <span class="text-primary-green">Dental Care</span>
-            </h1>
-            <p class="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">
-                Providing trusted dental care with comfort, clarity, and the latest technology.
-            </p>
-            <a href="#"
-                class="mt-8 inline-block bg-primary-green text-white px-8 py-3 rounded-full shadow-2xl shadow-primary-green/50 hover:bg-primary-green/90 transition transform hover:scale-105 font-bold text-lg">
-                Book Your Appointment Visit Today <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- WHAT SETS US APART (Professional Blue Box) -->
-    <div class="max-w-6xl mx-auto my-12 -mt-16 md:-mt-20 z-20 relative rounded-2xl shadow-2xl shadow-gray-600/30 
-                bg-primary-blue text-white p-8 md:p-10 flex flex-col lg:flex-row items-center justify-between">
-
-        <div class="text-center lg:text-left">
-            <h2 class="text-3xl font-bold font-display">What Sets Us Apart?</h2>
-            <p class="text-lg mt-2 opacity-90">
-                Quality, affordable care with honesty and efficiency right here in Wichita Falls.
-            </p>
-        </div>
-
-        <a href="contactus.html"
-            class="mt-6 lg:mt-0 bg-white text-primary-blue px-6 py-3 rounded-xl shadow-lg hover:bg-gray-100 transition font-semibold text-center transform hover:-translate-y-0.5 focus:ring-4 focus:ring-white/50">
-            4501 Call Field Road <br class="sm:hidden"> Wichita Falls, TX 76308
-        </a>
-    </div>
-
-    <!-- FEATURES SECTION -->
-    <section class="py-16 bg-surface-white">
-        <div class="max-w-7xl mx-auto px-6">
-
-            <div class="text-center mb-16">
-                <span class="text-primary-blue font-semibold uppercase tracking-wider">SPECIALTY & FEATURES</span>
-                <h2 class="text-4xl font-bold font-display mt-2 text-gray-900">
-                    Features You Will Love About Us
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                <!-- Card 1: Scheduling -->
-                <a href="scheduling.html"
-                    class="bg-bg-default/50 shadow-xl p-8 rounded-2xl text-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 focus:ring-4 focus:ring-primary-blue/30">
-                    <i class="fa-solid fa-calendar-check text-primary-blue text-5xl mb-4"></i>
-                    <h3 class="text-xl font-semibold">Scheduling</h3>
-                    <p class="text-gray-600 mt-2 text-sm">Easily book, modify, or confirm your appointments online.</p>
-                </a>
-
-                <!-- Card 2: Patient Registration -->
-                <a href="patientregistration.html"
-                    class="bg-bg-default/50 shadow-xl p-8 rounded-2xl text-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 focus:ring-4 focus:ring-primary-blue/30">
-                    <i class="fa-solid fa-users text-primary-blue text-5xl mb-4"></i>
-                    <h3 class="text-xl font-semibold">Patient Registration</h3>
-                    <p class="text-gray-600 mt-2 text-sm">Complete new patient forms digitally before your visit.</p>
-                </a>
-
-                <!-- Card 3: Book Appointment -->
-                <a href="#"
-                    class="bg-bg-default/50 shadow-xl p-8 rounded-2xl text-center hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 focus:ring-4 focus:ring-primary-blue/30">
-                    <i class="fa-solid fa-file-medical text-primary-blue text-5xl mb-4"></i>
-                    <h3 class="text-xl font-semibold">Book Appointment</h3>
-                    <p class="text-gray-600 mt-2 text-sm">Direct link to our scheduling portal for new and returning
-                        patients.</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODERN OVERVIEW SECTION -->
-    <section class="py-20 bg-bg-default/60">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-
-            <!-- LEFT -->
-            <div>
-                <h1 class="text-5xl font-extrabold font-display text-primary-blue mb-4">
-                    Expert Dentistry in Wichita Falls, TX
-                </h1>
-
-                <a href="drghia.html">
-                    <h2 class="text-3xl font-semibold text-gray-800 hover:text-primary-green transition">
-                        Meet Dr. Ghia, DDS, PA
-                    </h2>
-                </a>
-
-                <p class="text-gray-700 mt-4 leading-relaxed text-lg">
-                    Wichita Falls TX Dentist Dr. Ghia, DDS, MAGD, practices a full scope of general and cosmetic
-                    dentistry with expertise ranging from porcelain veneers to dental implants, crowns, and bridges. Dr.
-                    Ghia can correct a wide variety of cosmetic dental problems and can literally redesign your smile.
-                    Our goal is to provide best care in comfertable setting for you and your entire family
-                </p>
-
-                <!-- Address Box -->
-                <div
-                    class="mt-8 bg-surface-white p-6 rounded-xl shadow-xl flex space-x-4 items-start border-l-4 border-primary-blue">
-                    
-                    <div>
-                        <p class="font-bold text-xl">
-                            General & Cosmetic Dentistry Wichita Falls
-
-                            Our office can help you maintain or give you a smile you’re happy to show off. Modern
-                            cosmetic dentistry techniques make it easier than ever for you to have a bright, even smile.
-                            Dr. Ghia can give you the smile you want using:
-                        </p>
-                        <p class="font-bold text-xl">Visit Our Clinic</p>
-                        <p class="text-gray-600">4501 Call Field Road, Wichita Falls, TX <i class="fa fa-map-marker-alt text-primary-blue text-3xl"></i></p>
-                        <a href="tel:+19406928411"
-                            class="text-primary-blue font-semibold underline mt-1 block hover:text-primary-green"> (940)
-                            692-8411 </a>
-                    </div>
-                </div>
-
-                <!-- Services List -->
-                <h2 class="text-2xl font-semibold mt-10 mb-4 text-gray-800">Our Comprehensive Services</h2>
-
-                <ul class="grid grid-cols-2 gap-3 text-gray-700 font-medium">
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> Teeth Whitening</li>
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> Crowns & Bridges</li>
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> Porcelain Veneers</li>
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> Dental Implants</li>
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> Full & Partial Dentures</li>
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> General Checkups</li>
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> Clear Braces</li>
-                    <li class="flex items-center text-primary-blue"><i
-                            class="fas fa-check-circle mr-2 text-primary-green"></i> Root Canal Therapy</li>
-                </ul>
-            </div>
-
-            <!-- RIGHT IMAGE -->
-            <div class="flex justify-center lg:justify-end">
-                <!-- Placeholder Image -->
-                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000"
-                    class="w-full max-w-lg rounded-3xl shadow-2xl shadow-primary-blue/30" alt="Dental Overview Image" />
-            </div>
-        </div>
-    </section>
-
-    <!-- DOCTOR BIO & CONTACT CARDS -->
-    <section class="py-16 bg-surface-white">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-            <!-- LEFT BIO CARD -->
-            <div
-                class="bg-surface-white rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row items-start relative border border-gray-100">
-
-                <!-- Image -->
-                <!-- Placeholder Image -->
-                <img src="/Ghia-website-new/assets/image/Dr.Ghia.jpg"
-                    class="w-32 h-32 rounded-full object-cover border-4 border-primary-blue/50 shadow-md flex-shrink-0"
-                    alt="Dr. Ghia" />
-
-                <!-- Content -->
-                <div class="md:ml-6 flex-1 mt-4 md:mt-0">
-                    <h2 class="text-2xl font-bold font-display text-gray-900 mb-2">
-                        Dr. Kinnari Ghia, DDS, MAGD
-                    </h2>
-
-                    <p class="text-gray-600 leading-relaxed text-sm">
-                        Dr. Ghia has been practicing dentistry since 1998. She earned her
-                        Doctor of Dental Surgery from the University of Texas Health Science
-                        Center Houston and is a Master in the Academy of General Dentistry (MAGD).
-                    </p>
-                </div>
-
-                <!-- Arrow -->
-                <a href="drghia.html"
-                    class="absolute right-6 top-6 text-primary-blue hover:text-primary-green transition focus:ring-4 focus:ring-primary-blue/30 p-2 rounded-full">
-                    <i class="fas fa-chevron-right text-3xl"></i>
-                </a>
-
-            </div>
-
-            <!-- RIGHT CONTACT CARD -->
-            <div
-                class="bg-primary-green rounded-2xl shadow-2xl shadow-primary-green/40 p-10 text-white relative flex flex-col justify-between">
-
-                <h2 class="text-3xl font-bold font-display mb-4">Contact Information</h2>
-
-                <p class="text-xl leading-relaxed mb-6">
-                    4501 Call Field Road <br>
-                    Wichita Falls, TX 76308
-                    <!-- Map Icon -->
-                    <i class="fa fa-map-marker-alt text-white text-2xl mt-2"></i>
-                </p>
-
-                <a href="tel:+19406928411"
-                    class="inline-block border-2 border-white px-5 py-2.5 rounded-full text-white text-xl font-semibold hover:bg-white hover:text-primary-green transition">
-                    <i class="fas fa-phone mr-2"></i> (940) 692-8411
-                </a>
-
-
-            </div>
-        </div>
-    </section>
-
-    <!-- GOOGLE MAPS & RETURN TO TOP -->
-    <section class="mb-0 pt-8">
-        <div class="max-w-7xl mx-auto px-6">
-            <!-- Google Maps Embed -->
-            <div class="overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!4v1637603244442!6m8!1m7!1sCAoSLEFGMVFpcE5qWUlFaTFnbnAzZ0ZRcHZ5UkltdDRnbE9RVU84WnUxUk5ZOWM1!2m2!1d33.8716566!2d-98.5595918!3f73.63973974109526!4f-0.05135138315615817!5f0.7820865974627469"
-                    allowfullscreen="" loading="lazy" class="w-full h-96 border-0"></iframe>
-            </div>
-        </div>
-
-        <!-- Return to Top -->
-        <div class="text-center bg-primary-blue p-4 mt-6">
-            <a href="#" class="text-white font-semibold hover:text-primary-green transition">
-                Return To Top <i class="fas fa-arrow-up ml-1"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <!-- START OF USER-PROVIDED FOOTER -->
-    <footer class="bg-primary-green text-white py-14">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10">
-
-            <!-- Column 1: Location & Social -->
-            <div class="col-span-2 lg:col-span-1">
-                <h3 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Our Locations</h3>
-
-                <p class="text-sm">
-                    Burkburnett TX • Henrietta TX • Archer City TX • Holliday TX • Iowa Park TX<br>
-                    Vernon TX • Wichita Falls TX • Seymour TX • Electra TX
-                </p>
-
-                <p class="mt-4 font-semibold">
-                    4501 Call Field Road<br>
-                    Wichita Falls, TX 76308
-                </p>
-
-                <p class="mt-3 text-lg font-bold">Tel: (940) 692-8411</p>
-
-                <!-- Social Icons -->
-                <div class="flex space-x-5 mt-5 text-2xl">
-                    <a href="#" class="text-white hover:text-primary-blue transition rounded-lg p-1">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-primary-blue transition rounded-lg p-1">
-                        <i class="fab fa-google"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-primary-blue transition rounded-lg p-1">
-                        <i class="fab fa-yelp"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-primary-blue transition rounded-lg p-1">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-primary-blue transition rounded-lg p-1">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Column 2: Quick Links -->
-            <div>
-                <h3 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Quick Links</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-primary-blue transition block">Home</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Patient Information</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Preventative Care</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Restorative Dentistry</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Cosmetic Dentistry</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">About Us</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Contact Us</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Sitemap</a></li>
-                </ul>
-            </div>
-
-            <!-- Column 3: Services -->
-            <div>
-                <h3 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Dental Services</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-primary-blue transition block">Preventative Care</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Restorative Dentistry</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Cosmetic Dentistry</a></li>
-                    <li><a href="#" class="hover:text-primary-blue transition block">Emergency Dentistry</a></li>
-                </ul>
-            </div>
-
-            <!-- Column 4: Logo & Contact CTA -->
-            <div class="flex flex-col items-start">
-                <a href="index.html" class="text-3xl font-extrabold mb-4 text-white hover:text-gray-200 transition">
-                    <img src="/Ghia-website-new/assets/image/logo.png" class="w-70 mb-4" alt="Clinic Logo">
-
-                </a>
-                <p class="text-white/90 text-sm">&copy; 2025 Your Dental Clinic</p>
-                <a href="#"
-                    class="mt-6 inline-block bg-white text-primary-green px-6 py-3 rounded-full font-bold shadow-2xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
-                    Book an Appointment
-                </a>
-            </div>
-
-        </div>
-    </footer>
-    <!-- END OF USER-PROVIDED FOOTER -->
-
-    <!-- Bottom Bar (Branding) -->
-    <div class="bg-primary-blue/95 h-20 flex justify-center items-center text-white text-sm w-full shadow-inner">
-        <span>Website Design by</span>
-        <span class="ml-2 font-bold text-lg tracking-wider"><img src="/Ghia-website-new/assets/image/logoleft.png"
-                alt="Optima Logo" class="h-6 object-contain"></span>
-    </div>
-
-    <!-- Mobile Menu Toggle & Scroll Script -->
     <script>
-        const mobileBtn = document.querySelector(".mobile-menu-btn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        const closeMenu = document.getElementById("closeMenu");
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        // OPEN
-        mobileBtn.addEventListener("click", () => {
-            mobileMenu.style.transform = "translateY(0%)";
-        });
+            // --- 1. Mobile Menu Toggler ---
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function () {
+                    // Toggle the 'hidden' class on the main mobile menu list
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
 
-        // CLOSE
-        closeMenu.addEventListener("click", () => {
-            mobileMenu.style.transform = "translateY(-100%)";
-        });
+            // --- 2. Mobile Dropdown Toggler ---
+            const dropdownButtons = document.querySelectorAll('[data-mobile-dropdown]');
 
-        // DROPDOWNS
-        document.querySelectorAll(".mobile-dropdown-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const dd = btn.nextElementSibling;
-                // Simple toggle for mobile dropdowns
-                if (dd.classList.contains("hidden")) {
-                    // Close all others and open this one
-                    document.querySelectorAll(".mobile-dropdown").forEach(d => d.classList.add("hidden"));
-                    document.querySelectorAll(".mobile-dropdown-btn i").forEach(i => {
-                        i.classList.remove("fa-chevron-up");
-                        i.classList.add("fa-chevron-down");
-                    });
+            dropdownButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetId = button.getAttribute('data-mobile-dropdown');
+                    const targetMenu = document.getElementById(targetId + '-mobile-menu');
+                    // Find the arrow span element inside the button
+                    const arrow = button.querySelector('span'); 
 
-                    dd.classList.remove("hidden");
-                    const icon = btn.querySelector("i");
-                    icon.classList.remove("fa-chevron-down");
-                    icon.classList.add("fa-chevron-up");
+                    if (targetMenu) {
+                        // Toggle the 'hidden' class on the specific sub-menu
+                        targetMenu.classList.toggle('hidden');
 
-                } else {
-                    dd.classList.add("hidden");
-                    const icon = btn.querySelector("i");
-                    icon.classList.remove("fa-chevron-up");
-                    icon.classList.add("fa-chevron-down");
+                        // Change the arrow direction 
+                        if (targetMenu.classList.contains('hidden')) {
+                            arrow.innerHTML = '▶'; // Right arrow (closed)
+                        } else {
+                            arrow.innerHTML = '▼'; // Down arrow (open)
+                        }
+                    }
+                });
+            });
+            
+            // --- 3. Close mobile menu on resize (desktop view) ---
+            window.addEventListener('resize', function() {
+                // 1024px is the 'lg' breakpoint in Tailwind
+                if (window.innerWidth >= 1024) { 
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        
+                        // Also ensure all sub-menus are hidden when transitioning to desktop view
+                        const allSubMenus = document.querySelectorAll('#mobile-menu ul.ml-4');
+                        allSubMenus.forEach(subMenu => {
+                            subMenu.classList.add('hidden');
+                        });
+
+                        // Reset all arrows to right
+                        const allArrows = document.querySelectorAll('[data-mobile-dropdown] span');
+                        allArrows.forEach(arrow => {
+                            arrow.innerHTML = '▶';
+                        });
+                    }
                 }
             });
         });
-
-        // Scroll listener for sticky header effects
-        window.addEventListener("scroll", () => {
-            const header = document.querySelector(".header");
-            const topBar = document.querySelector(".top-bar");
-
-            if (window.scrollY > 100) {
-                header.classList.add("scrolled");
-                topBar.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-                topBar.classList.remove("scrolled");
-            }
-        });
     </script>
-</body>
 
-</html>
+
+
+    <script>
+fetch('./components/header.html')
+  .then(res => res.text())
+  .then(data => document.getElementById('header').innerHTML = data);
+</script>
+
+
+<body>
+
+    
+    
+    <!-- Hero -->
+    <section id="home" class="relative bg-cover bg-center h-[500px] md:h-[600px] flex items-center"
+        style="background-image: url('./assets/image/family.png');">
+
+        <div
+            class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center text-white py-12 lg:py-22 xl:py-40">
+
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-down"
+                style="color: var(--text-white); text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);">
+                Quality Dentistry in a <span style="color: var(--primary-light);">Comfortable Setting</span>
+            </h1>
+
+            <p class="text-lg md:text-xl max-w-4xl mx-auto mb-11 text-opacity-90 animate-fade-in-up"
+                style="color: var(--text-white); text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);">
+                Comprehensive family dentistry for all ages. We are committed to providing quality,
+                affordable care with honesty and efficiency.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 animate-fade-in-up">
+
+                <a href="https://patient.rocks/Dashboard/PatientDashboard/NjhmYWU1YmUtNjVmZC00ZGQ1LTlkOWItOGZhYmIx"
+                    class="transition duration-300 ease-in-out transform hover:scale-105 inline-flex items-center justify-center
+                   px-12 py-4 text-xl font-bold rounded-full shadow-2xl min-w-[220px] 
+                   focus:outline-none focus:ring-4" style="background-color: var(--primary-dark); color: var(--text-white);
+                   /* Added Focus Ring based on primary-light */
+                   --tw-ring-color: var(--primary-light);" onmouseover="this.style.backgroundColor='var(--primary)'"
+                    onmouseout="this.style.backgroundColor='var(--primary-dark)'">
+                    Book Appointment
+                </a>
+
+                <a href="services.html" class="bg-transparent border-2 transition duration-300 ease-in-out transform hover:scale-105 inline-flex items-center justify-center
+                   px-12 py-4 mb-3 text-xl font-semibold rounded-full min-w-[220px] 
+                   focus:outline-none focus:ring-4" style="border-color: var(--text-white); color: var(--text-white);
+                   /* Added Focus Ring based on primary-light */
+                   --tw-ring-color: var(--primary-light);"
+                    onmouseover="this.style.backgroundColor='var(--text-white)'; this.style.color='var(--primary-dark)'"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-white)'">
+                    Our Services
+                </a>
+
+            </div>
+        </div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-60">
+        </div>
+    </section>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 -mt-1 relative z-20 pb-13">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div
+                class="feature-card bg-white p-8 rounded-xl shadow-2xl border-t-4 border-teal-600 hover:shadow-3xl transition duration-300 transform hover:-translate-y-1 group">
+
+                <div class="feature-icon text-4xl text-teal-600 mb-4 transition duration-300 group-hover:scale-110">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <h3 class="text-xl font-extrabold text-gray-900 mb-2">Easy Scheduling</h3>
+
+                <p class="text-gray-600 mb-6">Book your appointment online or give us a call. We welcome same-day
+                    emergencies.</p>
+
+                <div class="flex justify-center">
+                    <a href="scheduling.html"
+                        class="text-teal-600 font-bold hover:text-teal-700 transition duration-300 flex items-center group-hover:tracking-wide">
+                        Learn More
+                        <span
+                            class="ml-1 text-xl leading-none transition duration-300 group-hover:translate-x-1">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="feature-card bg-white p-8 rounded-xl shadow-2xl border-t-4 border-teal-600 hover:shadow-3xl transition duration-300 transform hover:-translate-y-1 group">
+
+                <div class="feature-icon text-4xl text-teal-600 mb-4 transition duration-300 group-hover:scale-110">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <h3 class="text-xl font-extrabold text-gray-900 mb-2">Patient Registration</h3>
+
+                <p class="text-gray-600 mb-6">Fill out forms online to save time during your visit.</p>
+
+                <div class="flex justify-center">
+                    <a href="registration.html"
+                        class="text-teal-600 font-bold hover:text-indigo-700 transition duration-300 flex items-center group-hover:tracking-wide">
+                        Forms
+                        <span
+                            class="ml-1 text-xl leading-none transition duration-300 group-hover:translate-x-1">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+            <div
+                class="feature-card bg-white p-8 rounded-xl shadow-2xl border-t-4 border-teal-600 hover:shadow-3xl transition duration-300 transform hover:-translate-y-1 group">
+
+                <div class="feature-icon text-4xl text-teal-600 mb-4 transition duration-300 group-hover:scale-110">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <h3 class="text-xl font-extrabold text-gray-900 mb-2">Insurance Friendly</h3>
+
+                <p class="text-gray-600 mb-6">We accept most insurance plans and offer affordable
+                    options.</p>
+
+                <div class="flex justify-center">
+                    <a href="insurance.html"
+                        class="text-teal-600 font-bold hover:text-indigo-700 transition duration-300 flex items-center group-hover:tracking-wide">
+                        Learn More
+                        <span
+                            class="ml-1 text-xl leading-none transition duration-300 group-hover:translate-x-1">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- MODERN OVERVIEW SECTION -->
+    <section class="py-6 md:py-24 px-4 bg-slate-50">
+        <div class="container">
+            <div class="text-center mb-10 md:mb-16">
+                <h4 class="text-lg font-semibold uppercase tracking-wider mb-2" style="color: var(--primary);">
+                    Meet Dr. Ghia, DDS, PA</h4>
+
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4" style="color: var(--text-main);">
+                    Expert Dentistry in Wichita Falls, TX</h2>
+
+                <p class="text-gray-700 px-11 leading-relaxed">
+                    Wichita Falls TX Dentist Dr. Ghia, DDS, MAGD, practices a full scope of general and
+                    cosmetic
+                    dentistry with expertise ranging from porcelain veneers to dental implants, crowns, and
+                    bridges.
+                    Dr. Ghia can correct a wide variety of cosmetic dental problems and can literally redesign
+                    your smile.
+                    Our goal is to provide best care in comfertable setting for you and your entire family
+                </p>
+            </div>
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+
+                <div class="order-2 lg:order-1">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-teal-700 mb-8">
+                        General Cosmetic Dentistry Services
+                    </h1>
+                    <p class="text-gray-700 leading-relaxed">
+
+
+                        Our office can help you maintain or give you a smile you’re happy to show off.
+                        Modern
+                        cosmetic dentistry techniques make it easier than ever for you to have a bright,
+                        even smile.
+                        Dr. Ghia can give you the smile you want using:
+                    </p>
+                    <h2 class="text-2xl font-semibold mt-10 mb-4 text-teal-600">Our Comprehensive Services</h2>
+
+                    <ul class="grid grid-cols-2 gap-3 text-gray-700 font-medium">
+                        <li class="flex items-center teal-600"><i class="fas fa-check-circle mr-2 text-teal-600"></i>
+                            Teeth
+                            Whitening</li>
+                        <li class="flex items-center teal-600"><i class="fas fa-check-circle mr-2  text-teal-600"></i>
+                            Crowns & Bridges</li>
+                        <li class="flex items-centerteal-600"><i class="fas fa-check-circle mr-2 text-teal-600"></i>
+                            Porcelain Veneers</li>
+                        <li class="flex items-center  text-gray-700"><i
+                                class="fas fa-check-circle mr-2 text-teal-600"></i>
+                            Dental Implants</li>
+                        <li class="flex items-center  text-gray-700"><i
+                                class="fas fa-check-circle mr-2 text-teal-600"></i>
+                            Full & Partial Dentures
+                        </li>
+                        <li class="flex items-center  text-gray-700"><i
+                                class="fas fa-check-circle mr-2 text-teal-600"></i>
+                            General Checkups</li>
+                        <li class="flex items-center  text-gray-700"><i
+                                class="fas fa-check-circle mr-2 text-teal-600"></i>
+                            Clear Braces</li>
+                        <li class="flex items-center  text-gray-700"><i
+                                class="fas fa-check-circle mr-2 text-teal-600"></i>
+                            Root Canal Therapy</li>
+                    </ul>
+
+                </div>
+
+                <!-- RIGHT IMAGE -->
+                <div class="flex justify-center lg:justify-end">
+                    <!-- Placeholder Image -->
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000"
+                        class="w-full max-w-lg rounded-3xl shadow-2xl shadow-primary-blue/30"
+                        alt="Dental Overview Image" />
+                </div>
+            </div>
+    </section>
+    <section class="py-16 md:py-1 px-4 bg-slate-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+
+            <div class="order-2 lg:order-1">
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-teal-700 mb-8">
+                    Dental Implants Wichita Falls
+                </h1>
+
+                <div class="mt-8 p-6 sm:p-8 rounded-xl shadow-2xl border-l-8 border-teal-700 bg-white">
+
+                    <h2 class="text-2xl font-bold text-teal-600 mb-6">Benefits of Dental Implants</h2>
+
+                    <div class="grid grid-cols-1 gap-6">
+
+                        <div
+                            class="p-5 rounded-lg bg-gray-50 shadow-md transition duration-300 hover:shadow-xl hover:bg-cyan-50 border-t-4 border-teal-600">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-tooth text-3xl text-teal-600 mr-3"></i>
+                                <h3 class="text-xl font-bold text-slate-800">Natural Function</h3>
+                            </div>
+                            <p class="text-gray-700">
+                                Implants provide a stable foundation for replacement teeth that look, feel, and
+                                function exactly like natural teeth.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-5 rounded-lg bg-gray-50 shadow-md transition duration-300 hover:shadow-xl hover:bg-cyan-50 border-t-4 border-teal-600">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-smile-beam text-3xl text-teal-600 mr-3"></i>
+                                <h3 class="text-xl font-bold text-slate-800">Restored Confidence</h3>
+                            </div>
+                            <p class="text-gray-700">
+                                Regain the ability to smile with confidence, knowing your teeth appear natural and
+                                that your facial contours are preserved .
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-5 rounded-lg bg-gray-50 shadow-md transition duration-300 hover:shadow-xl hover:bg-cyan-50 border-t-4 border-teal-600">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-utensils text-3xl text-teal-600 mr-3"></i>
+                                <h3 class="text-xl font-bold text-slate-800">Improved Living</h3>
+                            </div>
+                            <p class="text-gray-700">
+                                Dental implants are changing the way people live, allowing them to eat virtually
+                                anything and rediscover the comfort to speak, laugh, and enjoy life.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+                <div class="w-full max-w-lg lg:h-[600px] shadow-2xl rounded-3xl overflow-hidden">
+                    <img src="assets/image/s2.jpeg"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-105"
+                        alt="Close up illustration of a dental implant">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About -->
+    <section id="about" class="py-16 md:py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                <div class="order-2 lg:order-1 max-w-xl mx-auto lg:mx-0">
+
+                    <h4 class="text-base sm:text-lg font-semibold uppercase tracking-widest text-teal-600 mb-3">
+                        MEET THE DOCTOR
+                    </h4>
+
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-800 mb-6">
+                        Dr. Kinnari Ghia, DDS, MAGD
+                    </h2>
+
+                    <p class="text-base md:text-lg text-gray-700 mb-4 leading-relaxed">
+                        Dr. Ghia has been practicing dentistry since 1998. She earned her Doctor of Dental Surgery
+                        (DDS) from the University of Texas Health Science Center Houston and holds the prestigious
+                        title of Master in the Academy of General Dentistry (MAGD).
+                    </p>
+
+                    <p class="text-base md:text-lg text-gray-700 mb-8 leading-relaxed">
+                        She practices a full scope of general and cosmetic dentistry with expertise ranging from
+                        porcelain veneers to dental implants, crowns, and bridges. Dr. Ghia can correct a wide
+                        variety of cosmetic dental problems and can literally redesign your smile.
+                    </p>
+
+                    <a href="about.html"
+                        class="inline-block px-8 py-3 border-2 border-teal-600 text-teal-600 font-bold rounded-lg shadow-md hover:bg-teal-600 hover:text-white transition duration-300 transform hover:scale-[1.02]">
+                        Learn More About Dr. Ghia
+                    </a>
+                </div>
+
+                <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+
+                    <div class="w-full max-w-md bg-teal-50 p-3 rounded-tr-3xl rounded-bl-3xl shadow-2xl">
+                        <img src="assets/image/Dr.Ghia.jpg" alt="Dr. Kinnari Ghia"
+                            class="w-full h-auto object-cover rounded-tr-3xl rounded-bl-3xl">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="text-center mb-3 md:mb-16">
+                <h4 class="text-lg font-semibold uppercase tracking-wider mb-2" style="color: var(--primary);">
+                    OUR EXPERTISE</h4>
+
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4" style="color: var(--text-main);">
+                    Comprehensive Dental Services</h2>
+
+                <p class="text-base sm:text-lg max-w-2xl mx-auto" style="color: var(--text-light);">
+                    Modern cosmetic dentistry techniques make it easier than ever for you to have a bright, even
+                    smile.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                <div
+                    class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3"><i
+                            class="fas fa-check-circle mr-2 text-primary-green"></i>General Dentistry</h3>
+                    <p class="text-gray-600">Thorough teeth cleanings, root canals, and preventative care
+                        for the whole
+                        family.</p>
+                </div>
+
+                <div
+                    class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3"><i
+                            class="fas fa-check-circle mr-2 text-primary-green"></i>Cosmetic Dentistry</h3>
+                    <p class="text-gray-600">Teeth whitening, porcelain veneers, and dental bonding to
+                        enhance your
+                        smile.</p>
+                </div>
+
+                <div
+                    class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3"><i
+                            class="fas fa-check-circle mr-2 text-primary-green"></i>Restorative Care</h3>
+                    <p class="text-gray-600">Dental crowns, bridges, and cosmetic fillings to restore
+                        function and
+                        aesthetics.</p>
+                </div>
+
+                <div
+                    class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3"><i
+                            class="fas fa-check-circle mr-2 text-primary-green"></i>Dental Implants</h3>
+                    <p class="text-gray-600">Permanent solution for missing teeth that look, feel, and
+                        function like
+                        natural teeth.</p>
+                </div>
+
+                <div
+                    class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3"><i
+                            class="fas fa-check-circle mr-2 text-primary-green"></i>Orthodontics</h3>
+                    <p class="text-gray-600">Clear orthodontics to straighten your teeth discreetly.</p>
+                </div>
+
+                <div
+                    class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3"><i
+                            class="fas fa-check-circle mr-2 text-primary-green"></i>Dentures</h3>
+                    <p class="text-gray-600">Custom-fitted dentures to restore your smile and ability to eat
+                        comfortably.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 md:py-28 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+
+                <div class="contact-info bg-gray-50 p-8 md:p-10 rounded-xl shadow-lg">
+                    <h4 class="text-lg font-semibold uppercase tracking-wider mb-2 text-primary-dark">GET IN
+                        TOUCH</h4>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10">Visit Our Office
+                    </h2>
+
+                    <div class="space-y-6">
+
+                        <div class="flex items-start space-x-4 p-4 rounded-lg transition duration-300 hover:bg-teal-50">
+                            <div
+                                class="bg-teal-100 text-teal-800 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-xl pt-1">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-1">Location</h3>
+                                <p class="text-gray-600">4501 Call Field Road<br>Wichita Falls, TX 76308</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-lg transition duration-300 hover:bg-teal-50">
+                            <div
+                                class="bg-teal-100 text-teal-800 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-xl pt-1">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-1">Phone</h3>
+                                <p class="text-gray-600">
+                                    <a href="tel:+19406928411"
+                                        class="text-teal-600 hover:text-teal-700 font-semibold transition duration-300">
+                                        (940) 692-8411
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-lg transition duration-300 hover:bg-teal-50">
+                            <div
+                                class="bg-teal-100 text-teal-800 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-xl pt-1">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-1">Office Hours</h3>
+                                <p class="text-gray-600">
+                                    Mon - Thu: 8:00 AM - 5:00 PM <br>
+                                    Fri - Sun: Closed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container w-full h-96 lg:h-auto rounded-xl shadow-2xl overflow-hidden">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3352.686677687864!2d-98.53688492435654!3d33.87377997322464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8653206666666667%3A0x6666666666666666!2s4501%20Call%20Field%20Rd%2C%20Wichita%20Falls%2C%20TX%2076308!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" title="Office Location Map">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="bg-slate-800 py-8 md:py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+
+            <h3 class="text-xl md:text-3xl text-white font-bold mb-3">
+                Ready to Start Your Healthy Smile Journey?
+            </h3>
+            <a href="tel:+19406928411" class="inline-block w-full sm:w-auto mt-2 px-8 py-3 
+                   bg-teal-600 text-white font-bold text-lg rounded-full 
+                   shadow-xl hover:bg-teal-700 
+                   transition duration-300 transform hover:scale-[1.03]">
+                Call Us Now
+            </a>
+
+            <p class="text-gray-400 mt-4 text-sm md:text-base">
+                You'll be happy you choose us for your dental needs!
+            </p>
+
+        </div>
+    </section>
+
+    <section>
+        <div
+            class="button-group flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8 mb-6 p-4">
+
+            <a href="https://patient.rocks/Dashboard/PatientDashboard/NjhmYWU1YmUtNjVmZC00ZGQ1LTlkOWItOGZhYmIx"
+                class="w-full sm:w-auto text-center px-8 py-3 bg-teal-600 text-white font-bold rounded-lg shadow-md hover:bg-teal-700 transition duration-300 transform hover:scale-105"
+                onclick="px_openIframe(event, this.href)">
+                SCHEDULING
+            </a>
+
+            <a href="drghia.html"
+                class="w-full sm:w-auto text-center px-8 py-3 bg-slate-200 text-slate-800 font-bold rounded-lg shadow-md hover:bg-slate-300 transition duration-300">
+                MEET DR. GHIA
+            </a>
+
+            <a href="contactus.html"
+                class="w-full sm:w-auto text-center px-8 py-3 bg-slate-200 text-slate-800 font-bold rounded-lg shadow-md hover:bg-slate-300 transition duration-300">
+                CONTACT US
+            </a>
+        </div>
+
+        <div class="text-center bg-teal-600 p-3 mt-8">
+            <a href="#top" class="text-white font-semibold hover:text-gray-200 transition">Return To Top ↑</a>
+        </div>
+    </section>
+    <script src="script.js"></script>
+    <!-- Load Footer -->
+    <div id="footer"></div>
+</body>

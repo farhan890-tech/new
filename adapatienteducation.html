@@ -1,0 +1,109 @@
+<body>
+
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <div id="header"></div>
+
+    <section class="py-16 md:py-24 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-center mb-12 text-teal-700">
+                📚 PATIENT EDUCATION
+            </h1>
+
+            <div class="p-6 sm:p-8 bg-slate-50 rounded-xl shadow-2xl border-t-4 border-teal-600">
+
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-4 mb-6 items-center border-b pb-4 border-slate-200">
+                    <img class="h-16 w-auto"
+                        src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/012012/american_dental_association_1_0.png?itok=_m0OiFsR"
+                        alt="American Dental Association Logo">
+                    <div class="text-lg font-semibold text-slate-800 sm:pl-4">
+                        <p class="text-xl font-extrabold text-teal-600">American Dental Association</p>
+                        <p class="font-bold uppercase tracking-wider text-slate-700">Patient Education Library</p>
+                    </div>
+                </div>
+
+                <p class="text-gray-700 mb-8 leading-relaxed md:text-lg">
+                    The ADA Patient Education Library provides reliable information on the most popular topics in
+                    dentistry. Select an article or video below to help you better maintain your dental health and get
+                    started now.
+                </p>
+
+                <div class="mb-6">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fas fa-book-open text-2xl text-teal-600"></i>
+                        <span class="text-xl font-bold text-slate-700">Read Articles</span>
+                    </div>
+
+                    <select id="articleSelect" class="w-full md:w-96 p-3 border border-gray-300 rounded-lg bg-white 
+                           text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 
+                           transition duration-300 shadow-sm" onchange="displayArticle()">
+                        <option>Select an Article...</option>
+                        <option value="article1">The Importance of Oral Hygiene</option>
+                        <option value="article2">How to Prevent Cavities</option>
+                        <option value="article3">Benefits of Regular Dental Checkups</option>
+                        <option value="article4">Understanding Gum Disease</option>
+                    </select>
+
+                    <div id="articleText"
+                        class="article-text mt-6 p-4 md:p-6 bg-white border border-gray-200 rounded-lg shadow-lg min-h-[100px] text-gray-700">
+                        <p class="text-gray-500 italic">Select an article from the menu above to view its content.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="bg-slate-800 py-8 md:py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+
+            <h3 class="text-xl md:text-3xl text-white font-bold mb-3">
+                Ready to Start Your Healthy Smile Journey?
+            </h3>
+            <a href="tel:+19406928411" class="inline-block w-full sm:w-auto mt-2 px-8 py-3 
+                   bg-teal-600 text-white font-bold text-lg rounded-full 
+                   shadow-xl hover:bg-teal-700 
+                   transition duration-300 transform hover:scale-[1.03]">
+                Call Us Now
+            </a>
+
+            <p class="text-gray-400 mt-4 text-sm md:text-base">
+                You'll be happy you choose us for your dental needs!
+            </p>
+
+        </div>
+    </section>
+
+    <section>
+        <div
+            class="button-group flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8 mb-6 p-4">
+
+            <a href="https://patient.rocks/Dashboard/PatientDashboard/NjhmYWU1YmUtNjVmZC00ZGQ1LTlkOWItOGZhYmIx"
+                class="w-full sm:w-auto text-center px-8 py-3 bg-teal-600 text-white font-bold rounded-lg shadow-md hover:bg-teal-700 transition duration-300 transform hover:scale-105"
+                onclick="px_openIframe(event, this.href)">
+                SCHEDULING
+            </a>
+
+            <a href="drghia.html"
+                class="w-full sm:w-auto text-center px-8 py-3 bg-slate-200 text-slate-800 font-bold rounded-lg shadow-md hover:bg-slate-300 transition duration-300">
+                MEET DR. GHIA
+            </a>
+
+            <a href="contactus.html"
+                class="w-full sm:w-auto text-center px-8 py-3 bg-slate-200 text-slate-800 font-bold rounded-lg shadow-md hover:bg-slate-300 transition duration-300">
+                CONTACT US
+            </a>
+        </div>
+
+        <div class="text-center bg-teal-600 p-3 mt-8">
+            <a href="#top" class="text-white font-semibold hover:text-gray-200 transition">Return To Top ↑</a>
+        </div>
+    </section>
+    <script src="script.js"></script>
+    <!-- Load Footer -->
+    <div id="footer"></div>
+</body>
