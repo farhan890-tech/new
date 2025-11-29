@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     
     <style>
-        /* Custom styles for better functionality */
+        /* Custom styles for mobile menu functionality */
+        /* The desktop-related .group:hover .group-hover\:block rule was removed as it was non-functional/conflicting */
         .mobile-menu-open {
             display: block !important;
         }
@@ -22,17 +23,11 @@
         .dropdown-open span {
             transform: rotate(90deg);
         }
-        
-        /* Ensure dropdowns stay visible when hovering */
-        .group:hover .group-hover\:block {
-            display: block;
-        }
     </style>
 </head>
 
 <body>
     <header class="w-full" role="banner">
-        <!-- Top Info Bar -->
         <div class="bg-primary-blue/90 backdrop-blur-sm shadow-md transition-all duration-300">
             <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-black text-sm py-1 px-4">
                 <div class="flex items-center gap-2">
@@ -47,13 +42,11 @@
             </div>
         </div>
 
-        <!-- Main Navigation -->
         <div class="container mx-auto flex items-center py-2 border-gray-300 border-dashed px-4 relative">
             <a href="index.html" class="flex-shrink-0">
                 <img src="assets/image/logo.png" class="w-36 md:w-40 lg:w-48" alt="Dental Care Logo" />
             </a>
 
-            <!-- Desktop Navigation -->
             <nav class="hidden lg:flex flex-1 justify-center" aria-label="Main navigation">
                 <ul id="desktop-nav-links" class="flex items-center gap-2 font-medium" role="menubar">
                     <li role="none"><a href="index.html" class="px-3 py-2 hover:text-primary-green transition" role="menuitem">Home</a></li>
@@ -138,7 +131,6 @@
                 </ul>
             </nav>
 
-            <!-- Call to Action & Mobile Menu Button -->
             <div class="flex items-center gap-4 md:gap-6 ml-auto">
                 <a href="tel:+19406928411" 
                     class="hidden lg:inline-block px-6 py-2 bg-teal-600 text-white font-bold rounded-full shadow-md hover:bg-teal-700 transition duration-300">
@@ -154,7 +146,6 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation -->
         <nav id="mobile-menu" class="lg:hidden hidden absolute w-full bg-white shadow-xl z-40 py-2" aria-label="Mobile navigation">
             <ul>
                 <li><a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a></li>
@@ -253,7 +244,6 @@
         </nav>
     </header>
 
-    <!-- JavaScript for Mobile Menu Functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
