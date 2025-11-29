@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Call Field Family & Cosmetic Dentistry</title>
+    <title>Dental Care</title>
     <meta name="description" content="Quality, affordable dental care in Wichita Falls. Dr. Ghia offers general, cosmetic, and implant dentistry in a comfortable setting.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,64 +11,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    <script>
-        // Tailwind Configuration to define custom colors used in the header
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-blue': '#2E5090', // Assuming a deep blue for the brand color
-                        'primary-green': '#009999', // Assuming a teal/green color for highlights
-                        'teal-600': '#047878', // Standard Tailwind teal adjusted slightly if needed
-                        'teal-700': '#0F766E', // Standard Tailwind teal adjusted slightly if needed
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
     <style>
         /* Custom styles for better functionality */
+        .mobile-menu-open {
+            display: block !important;
+        }
+        
         .dropdown-open span {
             transform: rotate(90deg);
         }
         
-        /* Ensure desktop dropdowns stay visible when hovering */
+        /* Ensure dropdowns stay visible when hovering */
         .group:hover .group-hover\:block {
             display: block;
-        }
-        
-        /* Utility class for mobile arrow rotation */
-        .rotate-90 {
-            transform: rotate(90deg);
         }
     </style>
 </head>
 
 <body>
     <header class="w-full" role="banner">
+        <!-- Top Info Bar -->
         <div class="bg-primary-blue/90 backdrop-blur-sm shadow-md transition-all duration-300">
-            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-white text-sm py-1 px-4">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-black text-sm py-1 px-4">
                 <div class="flex items-center gap-2">
-                    <i class="fas fa-map-marker-alt text-white"></i>
+                    <i class="fas fa-map-marker-alt text-black"></i>
                     <span>4501 Call Field Road, Wichita Falls, TX 76308</span>
                 </div>
-                <div class="hidden sm:block text-white">|</div>
+                <div class="hidden sm:block text-black">|</div>
                 <a href="tel:+19406928411" class="flex items-center gap-2 hover:text-primary-green transition">
-                    <i class="fas fa-phone-alt text-white"></i>
+                    <i class="fas fa-phone-alt text-black"></i>
                     <span>(940) 692-8411</span>
                 </a>
             </div>
         </div>
 
-        <div class="container mx-auto flex items-center py-4 px-4 relative">
+        <!-- Main Navigation -->
+        <div class="container mx-auto flex items-center py-2 border-gray-300 border-dashed px-4 relative">
             <a href="index.html" class="flex-shrink-0">
-                <div class="w-36 md:w-40 lg:w-48 text-xl font-bold text-primary-blue">CALL FIELD <span class="block text-sm font-normal">Family & Cosmetic Dentistry</span></div>
-                </a>
+                <img src="assets/image/logo.png" class="w-36 md:w-40 lg:w-48" alt="Dental Care Logo" />
+            </a>
 
+            <!-- Desktop Navigation -->
             <nav class="hidden lg:flex flex-1 justify-center" aria-label="Main navigation">
-                <ul id="desktop-nav-links" class="flex items-center gap-6 font-medium text-gray-700" role="menubar">
+                <ul id="desktop-nav-links" class="flex items-center gap-2 font-medium" role="menubar">
                     <li role="none"><a href="index.html" class="px-3 py-2 hover:text-primary-green transition" role="menuitem">Home</a></li>
 
                     <li class="relative group" role="none">
@@ -151,6 +138,7 @@
                 </ul>
             </nav>
 
+            <!-- Call to Action & Mobile Menu Button -->
             <div class="flex items-center gap-4 md:gap-6 ml-auto">
                 <a href="tel:+19406928411" 
                     class="hidden lg:inline-block px-6 py-2 bg-teal-600 text-white font-bold rounded-full shadow-md hover:bg-teal-700 transition duration-300">
@@ -166,7 +154,8 @@
             </div>
         </div>
 
-        <nav id="mobile-menu" class="lg:hidden hidden absolute w-full bg-white shadow-xl z-40 py-2 top-full" aria-label="Mobile navigation">
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="lg:hidden hidden absolute w-full bg-white shadow-xl z-40 py-2" aria-label="Mobile navigation">
             <ul>
                 <li><a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a></li>
 
@@ -264,6 +253,7 @@
         </nav>
     </header>
 
+    <!-- JavaScript for Mobile Menu Functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -282,21 +272,12 @@
                     icon.classList.replace('fa-bars', 'fa-times');
                 } else {
                     icon.classList.replace('fa-times', 'fa-bars');
-                    
-                    // Close all dropdowns when closing the main menu
-                    document.querySelectorAll('[id$="-mobile-menu"]').forEach(menu => {
-                        menu.classList.add('hidden');
-                    });
-                    document.querySelectorAll('.mobile-dropdown-btn span').forEach(arrow => {
-                        arrow.classList.remove('rotate-90');
-                    });
                 }
             });
             
             // Toggle mobile dropdown menus
             mobileDropdownBtns.forEach(btn => {
-                btn.addEventListener('click', function(event) {
-                    event.stopPropagation(); // Prevent click from bubbling up and closing the menu
+                btn.addEventListener('click', function() {
                     const targetId = this.getAttribute('data-mobile-dropdown');
                     const targetMenu = document.getElementById(`${targetId}-mobile-menu`);
                     const arrow = this.querySelector('span');
@@ -307,7 +288,7 @@
                     // Rotate arrow
                     arrow.classList.toggle('rotate-90');
                     
-                    // Close other dropdowns
+                    // Close other dropdowns (optional)
                     mobileDropdownBtns.forEach(otherBtn => {
                         if (otherBtn !== btn) {
                             const otherTargetId = otherBtn.getAttribute('data-mobile-dropdown');
@@ -321,9 +302,9 @@
                 });
             });
             
-            // Close mobile menu when clicking outside (on desktop sizes, this may still close mobile menu if active)
+            // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
-                if (window.innerWidth < 1024 && !mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target) && mobileMenuBtn.getAttribute('aria-expanded') === 'true') {
+                if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
                     mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     const icon = mobileMenuBtn.querySelector('i');
